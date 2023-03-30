@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import com.example.affirmations.data.Datasource
 import com.example.affirmations.model.Affirmation
 import com.example.affirmations.ui.theme.AffirmationsTheme
+import com.example.affirmations.ui.theme.Shapes
 import javax.sql.DataSource
 
 
@@ -52,8 +54,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
-    Card(modifier = modifier.padding(8.dp), elevation = 4.dp) {
+fun AffirmationCard(
+    affirmation: Affirmation,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier.padding(8.dp),
+        elevation = 4.dp,
+        shape = RoundedCornerShape(10)
+    ) {
         Column {
             Image(
                 painter = painterResource(affirmation.imageResourceId),
@@ -74,7 +83,10 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
+private fun AffirmationList(
+    affirmationList: List<Affirmation>,
+    modifier: Modifier = Modifier
+) {
     LazyColumn {
         items(affirmationList) { affirmation ->
             AffirmationCard(affirmation)
